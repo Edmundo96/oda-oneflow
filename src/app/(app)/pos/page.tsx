@@ -111,7 +111,18 @@ export default function PosPage() {
     }
   }
 
-  function updateQuantity(productId: string, nextQuantity: number) {
+   function updateQuantity(productId: string, nextQuantity: number) {
+    const cartItem = cart.find((item) => item.product.id === productId);
+
+    if (!cartItem) return;
+
+    if (!Number.isFinite(nextQuantity)) return;
+
+    if (nextQuantity > cartItem.product.stock) {
+      showToast("Stock insuficiente", { tone: "error" });
+      return;
+    }
+
     setCart((current) =>
       nextQuantity <= 0
         ? current.filter((item) => item.product.id !== productId)
