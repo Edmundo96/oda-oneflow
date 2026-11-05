@@ -46,7 +46,6 @@ export function CartTable({ items, onQuantityChange, onRemove }: CartTableProps)
               <button
                 aria-label={`Agregar una unidad de ${product.name}`}
                 className="flex h-10 w-10 items-center justify-center rounded-md bg-white disabled:cursor-not-allowed disabled:opacity-40"
-                disabled={quantity >= product.stock}
                 onClick={() => onQuantityChange(product.id, quantity + 1)}
                 title={quantity >= product.stock ? "Sin más existencias" : undefined}
                 type="button"
